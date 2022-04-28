@@ -8,26 +8,23 @@ using System.Threading.Tasks;
 using UnitTestProject1.ComponentHelper;
 using UnitTestProject1.Settings;
 
-namespace TextBox
+namespace Button
 {
     [TestClass]
-    public class TestTextBox
+    public class HandleButton
     {
         [TestMethod]
-        public void TextBox()
+        public void TestButton()
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             LinkHelper.ClickLink(By.LinkText("File a Bug"));
-            //IWebElement ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_login"));
-            //ele.SendKeys(ObjectRepository.Config.GetUserName());
-            //ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_password"));
-            //ele.SendKeys(ObjectRepository.Config.GetPassword());
-            //ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_login"));
-            //ele.Clear();
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_login"), ObjectRepository.Config.GetUserName());
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_password"), ObjectRepository.Config.GetPassword());
-            TextBoxHelper.ClearTextBox(By.Id("Bugzilla_login"));
-            TextBoxHelper.ClearTextBox(By.Id("Bugzilla_password"));
+            //IWebElement element = ObjectRepository.Driver.FindElement(By.Id("log_in"));
+            //element.Click();
+            Console.WriteLine("Enabled : {0}",ButtonHelper.IsButtonEnable(By.Id("log_in")));
+            Console.WriteLine("Button Text : {0}",ButtonHelper.GetButtonText(By.Id("log_in")));
+            ButtonHelper.ClickButton(By.Id("log_in"));
 
         }
     }

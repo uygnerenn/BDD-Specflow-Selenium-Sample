@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,28 @@ using System.Threading.Tasks;
 using UnitTestProject1.ComponentHelper;
 using UnitTestProject1.Settings;
 
-namespace TextBox
+namespace HandleDropDown
 {
     [TestClass]
-    public class TestTextBox
+    public class DropDownList
     {
         [TestMethod]
-        public void TextBox()
+
+        public void TestList()
         {
+
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             LinkHelper.ClickLink(By.LinkText("File a Bug"));
-            //IWebElement ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_login"));
-            //ele.SendKeys(ObjectRepository.Config.GetUserName());
-            //ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_password"));
-            //ele.SendKeys(ObjectRepository.Config.GetPassword());
-            //ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_login"));
-            //ele.Clear();
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_login"), ObjectRepository.Config.GetUserName());
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_password"), ObjectRepository.Config.GetPassword());
-            TextBoxHelper.ClearTextBox(By.Id("Bugzilla_login"));
-            TextBoxHelper.ClearTextBox(By.Id("Bugzilla_password"));
-
+            ButtonHelper.ClickButton(By.Id("log_in"));
+           // LinkHelper.ClickLink(By.LinkText("Testng"));
+            IWebElement element = ObjectRepository.Driver.FindElement(By.Id("bug_severity"));
+            SelectElement select = new SelectElement(element);
+            select.SelectByIndex(2);
+            select.SelectByValue("normal");
+            select.SelectByText("blocker");
+           
         }
     }
 }

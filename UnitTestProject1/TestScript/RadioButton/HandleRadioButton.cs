@@ -8,26 +8,25 @@ using System.Threading.Tasks;
 using UnitTestProject1.ComponentHelper;
 using UnitTestProject1.Settings;
 
-namespace TextBox
+namespace RadioButton
 {
     [TestClass]
-    public class TestTextBox
+    public class HandleRadioButton
     {
         [TestMethod]
-        public void TextBox()
+
+        public void TestRadio()
         {
             NavigationHelper.NavigateToUrl(ObjectRepository.Config.GetWebsite());
             LinkHelper.ClickLink(By.LinkText("File a Bug"));
-            //IWebElement ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_login"));
-            //ele.SendKeys(ObjectRepository.Config.GetUserName());
-            //ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_password"));
-            //ele.SendKeys(ObjectRepository.Config.GetPassword());
-            //ele = ObjectRepository.Driver.FindElement(By.Id("Bugzilla_login"));
-            //ele.Clear();
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_login"), ObjectRepository.Config.GetUserName());
             TextBoxHelper.TypeInTextBox(By.Id("Bugzilla_password"), ObjectRepository.Config.GetPassword());
-            TextBoxHelper.ClearTextBox(By.Id("Bugzilla_login"));
-            TextBoxHelper.ClearTextBox(By.Id("Bugzilla_password"));
+            ButtonHelper.ClickButton(By.Id("log_in"));
+            LinkHelper.ClickLink(By.XPath("//div[@id='header']/ul[1]/li[9]/a"));
+            LinkHelper.ClickLink(By.XPath("//dt[@id='parameters']/a"));
+            //IWebElement element = ObjectRepository.Driver.FindElement(By.Id("ssl_redirect-on"));
+            //element.Click();
+            RadioButtonHelper.ClickRadioButton(By.Id("ssl_redirect-on"));
 
         }
     }

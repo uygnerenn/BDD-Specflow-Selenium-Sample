@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnitTestProject1.ComponentHelper;
 using UnitTestProject1.Settings;
 
-namespace UnitTestProject1.TestScript.HyperLink
+namespace HyperLink
 {
     [TestClass]
     public class TestHyperLink
